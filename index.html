@@ -1,0 +1,473 @@
+<html>
+<head>
+	<style type="text/css">
+		body
+		{
+			background-color: gray;
+			color: white;
+		}
+		
+		select
+		{
+			font-family: monospace;
+			font-size: 8pt;
+		}
+		
+		li.bug
+		{
+			color: khaki;
+		}
+		
+		input.movebutton
+		{
+			width: 150px;
+		}
+	</style>
+	
+	<script type="text/javascript" src="OptionManipulator.js"></script>
+	
+	<script type="text/javascript">
+		var newOrder = new Array();
+		var om = null;
+		
+		function init()
+		{
+			try
+			{
+				om = new OptionManipulator("left", "right");
+			}
+			catch(e)
+			{
+				if(e instanceof IllegalArgumentException)
+				{
+					alert(e.toString());
+				}
+				else
+				{
+					alert("An unknown error occurred.");
+				}
+			}
+
+			return;
+		}
+		
+		function kp_moveRight(event, listbox)
+		{
+		  var keyCode = null;
+		  var stringFromChar = null;
+		  
+		  if(event.charCode) //if Netscape or derivative
+		  {
+		    keyCode = event.charCode;
+		  }
+		  else //I.E.
+		  {
+		    keyCode = event.keyCode;
+		  }
+		  
+		  if(keyCode == 13)
+		  {
+		  	var selectedIndex = listbox.selectedIndex;
+		  	om.moveRight();
+		  	listbox.selectedIndex = selectedIndex;
+		  }
+		  
+		  return;
+		}
+		
+		function kp_moveLeft(event, listbox)
+		{
+		  var keyCode = null;
+		  var stringFromChar = null;
+		  
+		  if(event.charCode) //if Netscape or derivative
+		  {
+		    keyCode = event.charCode;
+		  }
+		  else //I.E.
+		  {
+		    keyCode = event.keyCode;
+		  }
+		  
+		  if(keyCode == 13)
+		  {
+		  	var selectedIndex = listbox.selectedIndex;
+		  	om.moveLeft();
+		  	listbox.selectedIndex = selectedIndex;
+		  }
+		  
+		  return;
+		}
+		
+		function renumberOptions()
+		{
+			var listbox = document.getElementById("right");
+			var name = 0;
+			
+			for(var i = 0; i < listbox.options.length; i++)
+			{
+				name = listbox.options[i].value.split("|")[1];
+				listbox.options[i].value = Number(i + 1) + "|" + name;
+				listbox.options[i].text = Number(i + 1) + " " + name;
+			}
+			
+			return;
+		}
+	</script>
+</head>
+
+<body onload="init();">
+<center>
+	<h2>Testing Option Transfer</h2>
+	<br/>
+	<br/>
+	<table>
+		<tr>
+			<td>
+				<table cellspacing="0" cellpadding="0" style="width: 100%;">
+					<tr>
+						<td style="width: 50%;">
+							<input type="button" style="width: 100%" value="sortNumeric()" onclick="om.sortNumeric('L');"/>
+						</td>
+						<td style="width: 50%;">
+							<input type="button" style="width: 100%" value="sortAlphabetic()" onclick="om.sortAlphabetic('L');"/>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				&nbsp;
+			</td>
+			<td style="text-align: center;">
+				<input type="button" class="movebutton" value="getValues()" onclick="try{alert(om.getOptionValues('R'));}catch(e){alert(e.toString());};"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<select id="left" multiple="multiple" size="20" style="width: 300px;" ondblclick="om.moveRight();" onkeypress="kp_moveRight(event, this);">
+<option value="1|Amanda Day">1 Amanda Day</option>
+<option value="2|Jill Magi">2 Jill Magi</option>
+<option value="3|Kim Stilwell">3 Kim Stilwell</option>
+<option value="4|K Rossman">4 K Rossman</option>
+<option value="5|Janice J Manske">5 Janice J Manske</option>
+<option value="6|Romi Ioannides">6 Romi Ioannides</option>
+<option value="7|Tamara King">7 Tamara King</option>
+<option value="8|Kelly M Albracht">8 Kelly M Albracht</option>
+<option value="9|Jennifer A Walker">9 Jennifer A Walker</option>
+<option value="10|Tricia Dallas">10 Tricia Dallas</option>
+<option value="11|S Barney">11 S Barney</option>
+<option value="12|W Mills">12 W Mills</option>
+<option value="13|S Hughes">13 S Hughes</option>
+<option value="14|Renee King">14 Renee King</option>
+<option value="15|Stacy Seeman">15 Stacy Seeman</option>
+<option value="16|C Krause">16 C Krause</option>
+<option value="17|T Brookes">17 T Brookes</option>
+<option value="18|Peri Parsons">18 Peri Parsons</option>
+<option value="19|Kate Peterson">19 Kate Peterson</option>
+<option value="20|Julia Brown">20 Julia Brown</option>
+<option value="21|Cindi Cole">21 Cindi Cole</option>
+<option value="22|C Kraus">22 C Kraus</option>
+<option value="23|B Rydell">23 B Rydell</option>
+<option value="24|Heather K McCollum">24 Heather K McCollum</option>
+<option value="25|S McInnis">25 S McInnis</option>
+<option value="26|Kristin Lukitsch">26 Kristin Lukitsch</option>
+<option value="27|Kristin Bakel">27 Kristin Bakel</option>
+<option value="28|Mandy Brehm">28 Mandy Brehm</option>
+<option value="29|Joey Chamberlin">29 Joey Chamberlin</option>
+<option value="30|Amanda Donovan">30 Amanda Donovan</option>
+<option value="31|V Isaacson">31 V Isaacson</option>
+<option value="32|Robin Sadowski">32 Robin Sadowski</option>
+<option value="33|Beth A Fisher">33 Beth A Fisher</option>
+<option value="34|Lisa M McCulloh">34 Lisa M McCulloh</option>
+<option value="35|Riley Zeiser">35 Riley Zeiser</option>
+<option value="36|Sarah Stingley">36 Sarah Stingley</option>
+<option value="37|K Sorensen">37 K Sorensen</option>
+<option value="38|Sara Hill">38 Sara Hill</option>
+<option value="39|Michelle L Easter">39 Michelle L Easter</option>
+<option value="40|Amber Schaible">40 Amber Schaible</option>
+<option value="41|Beth OLeshansky">41 Beth OLeshansky</option>
+<option value="42|G Still">42 G Still</option>
+<option value="43|W Smith">43 W Smith</option>
+<option value="44|Y Carmean">44 Y Carmean</option>
+<option value="45|Carlye Ruybal">45 Carlye Ruybal</option>
+<option value="46|R Fischer">46 R Fischer</option>
+<option value="47|Molly Hussey">47 Molly Hussey</option>
+<option value="48|Katy Hutchinson">48 Katy Hutchinson</option>
+<option value="49|Melissa Williams">49 Melissa Williams</option>
+<option value="50|D Williams">50 D Williams</option>
+<option value="51|I Wolff">51 I Wolff</option>
+<option value="52|Kristin Litwak">52 Kristin Litwak</option>
+<option value="53|Kirsten Wells">53 Kirsten Wells</option>
+<option value="54|Kristin Duncanson">54 Kristin Duncanson</option>
+<option value="55|Renee S McElwee">55 Renee S McElwee</option>
+<option value="56|Elizabeth Frizell">56 Elizabeth Frizell</option>
+<option value="57|Sarah A Frink">57 Sarah A Frink</option>
+<option value="58|Marjie Adams">58 Marjie Adams</option>
+<option value="59|Jill Fairlamb">59 Jill Fairlamb</option>
+<option value="60|Angela Corbin">60 Angela Corbin</option>
+<option value="61|Amie Daubenberger">61 Amie Daubenberger</option>
+<option value="62|Carrie Matzen">62 Carrie Matzen</option>
+<option value="63|K Anderson">63 K Anderson</option>
+<option value="64|Kristen Coyne">64 Kristen Coyne</option>
+<option value="65|Brittany Salter">65 Brittany Salter</option>
+<option value="66|O Rosenthal">66 O Rosenthal</option>
+<option value="67|Kristen Squires">67 Kristen Squires</option>
+<option value="68|Catherine Rattray">68 Catherine Rattray</option>
+<option value="69|Beth E Buss">69 Beth E Buss</option>
+<option value="70|Pamela Lloyd">70 Pamela Lloyd</option>
+<option value="71|Jamie Gran">71 Jamie Gran</option>
+<option value="72|Ann E Riekeman">72 Ann E Riekeman</option>
+<option value="73|Claudia Schrand">73 Claudia Schrand</option>
+<option value="74|Kerry Schutt">74 Kerry Schutt</option>
+<option value="75|Jill Cleland">75 Jill Cleland</option>
+<option value="76|Jenny Levinson">76 Jenny Levinson</option>
+<option value="77|Chesney OLeary">77 Chesney OLeary</option>
+<option value="78|Amy McBride">78 Amy McBride</option>
+<option value="79|Molly A Johnston">79 Molly A Johnston</option>
+<option value="80|Meghan Schifrin">80 Meghan Schifrin</option>
+<option value="81|Kimberly Braun">81 Kimberly Braun</option>
+<option value="82|Megan Rike">82 Megan Rike</option>
+<option value="83|Angela D Ellis">83 Angela D Ellis</option>
+<option value="84|Kimberly A Middleton">84 Kimberly A Middleton</option>
+<option value="85|Amy N Mueller">85 Amy N Mueller</option>
+<option value="86|Melanie Hadden">86 Melanie Hadden</option>
+<option value="87|Katherine E Hindman">87 Katherine E Hindman</option>
+<option value="88|K Grove">88 K Grove</option>
+<option value="89|Keana Randolph">89 Keana Randolph</option>
+<option value="90|Nicole Becker">90 Nicole Becker</option>
+<option value="91|Elizabeth A Brown">91 Elizabeth A Brown</option>
+<option value="92|Jennifer Binder">92 Jennifer Binder</option>
+<option value="93|F Cleland">93 F Cleland</option>
+<option value="94|Kimberly Payer">94 Kimberly Payer</option>
+<option value="95|Laura K Thompson">95 Laura K Thompson</option>
+<option value="96|Julie Phifer">96 Julie Phifer</option>
+<option value="97|Holly Alber">97 Holly Alber</option>
+<option value="98|Kim Shencup">98 Kim Shencup</option>
+<option value="99|V Porter">99 V Porter</option>
+<option value="100|Kristen Stewart">100 Kristen Stewart</option>
+<option value="101|L Elavsky">101 L Elavsky</option>
+<option value="102|E Mahon">102 E Mahon</option>
+<option value="103|Kathryn Hausterman">103 Kathryn Hausterman</option>
+<option value="104|Kristine L Kutzscher">104 Kristine L Kutzscher</option>
+<option value="105|Karrie Cisneros">105 Karrie Cisneros</option>
+<option value="106|Kathleen A Radebaugh">106 Kathleen A Radebaugh</option>
+<option value="107|Noelle H Tedesco">107 Noelle H Tedesco</option>
+<option value="108|Kimberly Bengston">108 Kimberly Bengston</option>
+<option value="109|Kelly Mcneil">109 Kelly Mcneil</option>
+<option value="110|Shannon Koenig">110 Shannon Koenig</option>
+<option value="111|R Westerhof">111 R Westerhof</option>
+<option value="112|Allison E Wittman">112 Allison E Wittman</option>
+<option value="113|N Pearl">113 N Pearl</option>
+<option value="114|Beth Agustsson">114 Beth Agustsson</option>
+<option value="115|Sara Amir">115 Sara Amir</option>
+<option value="116|I Jackoniski">116 I Jackoniski</option>
+<option value="117|Tammy Corbin">117 Tammy Corbin</option>
+<option value="118|D Woodard">118 D Woodard</option>
+<option value="119|G Feldman">119 G Feldman</option>
+<option value="120|S Meissner">120 S Meissner</option>
+<option value="121|Z Witke">121 Z Witke</option>
+<option value="122|I Javert">122 I Javert</option>
+<option value="123|I Daniel">123 I Daniel</option>
+<option value="124|G Headley">124 G Headley</option>
+<option value="125|Phillip Grabon">125 Phillip Grabon</option>
+<option value="126|Kendra K Thoren">126 Kendra K Thoren</option>
+<option value="127|Lendie Murry">127 Lendie Murry</option>
+<option value="128|Jill Mc Gee">128 Jill Mc Gee</option>
+<option value="129|Courtney Louden">129 Courtney Louden</option>
+<option value="130|Laura M Andrews">130 Laura M Andrews</option>
+<option value="131|Erika Gulling">131 Erika Gulling</option>
+<option value="132|Jennifer Dialbert">132 Jennifer Dialbert</option>
+<option value="133|Sunny Aiken">133 Sunny Aiken</option>
+<option value="134|R Sewell">134 R Sewell</option>
+<option value="135|Elizabeth D Leahy">135 Elizabeth D Leahy</option>
+<option value="136|D Davidsmeyer">136 D Davidsmeyer</option>
+<option value="137|M Dirksin">137 M Dirksin</option>
+<option value="138|Stephanie Miller">138 Stephanie Miller</option>
+<option value="139|Sara Carber">139 Sara Carber</option>
+<option value="140|Amy Parsley">140 Amy Parsley</option>
+<option value="141|Christine Berghoefer">141 Christine Berghoefer</option>
+<option value="142|O Mulligan">142 O Mulligan</option>
+<option value="143|Clare C Azer">143 Clare C Azer</option>
+<option value="144|Michelle Wilson">144 Michelle Wilson</option>
+<option value="145|L Mitchell">145 L Mitchell</option>
+<option value="146|Roger Hall">146 Roger Hall</option>
+<option value="147|N Bristow">147 N Bristow</option>
+<option value="148|Kimberly A Williams">148 Kimberly A Williams</option>
+<option value="149|Laura N Miller">149 Laura N Miller</option>
+<option value="150|W Brady">150 W Brady</option>
+<option value="151|Erika Roberts">151 Erika Roberts</option>
+<option value="152|Kris A Schomaker">152 Kris A Schomaker</option>
+<option value="153|Nora Fondroy">153 Nora Fondroy</option>
+<option value="154|Amy L Knapke">154 Amy L Knapke</option>
+<option value="155|Sarah Brewer">155 Sarah Brewer</option>
+<option value="156|Faith Dibuo">156 Faith Dibuo</option>
+<option value="157|Kae Bull">157 Kae Bull</option>
+<option value="158|Jacqueline Herrmann">158 Jacqueline Herrmann</option>
+<option value="159|Sarah E Dick">159 Sarah E Dick</option>
+<option value="160|Emily Stilwell">160 Emily Stilwell</option>
+<option value="161|J Breitenbach">161 J Breitenbach</option>
+<option value="162|B Rosckowff">162 B Rosckowff</option>
+<option value="163|B Czar">163 B Czar</option>
+<option value="164|Erin E Christensen">164 Erin E Christensen</option>
+<option value="165|Sonya Mercer">165 Sonya Mercer</option>
+<option value="166|L Lippian">166 L Lippian</option>
+<option value="167|Jamie Seevers">167 Jamie Seevers</option>
+<option value="168|Beth Deimerly">168 Beth Deimerly</option>
+<option value="169|Libby Pick">169 Libby Pick</option>
+<option value="170|W Williams">170 W Williams</option>
+<option value="171|Sarah Lee">171 Sarah Lee</option>
+<option value="172|P Spike">172 P Spike</option>
+<option value="173|F Alberti">173 F Alberti</option>
+<option value="174|James Merrill">174 James Merrill</option>
+<option value="175|Shannon Uchytil">175 Shannon Uchytil</option>
+<option value="176|Heather L Howard">176 Heather L Howard</option>
+<option value="177|Angela R Wittmack">177 Angela R Wittmack</option>
+<option value="178|Kim Parker">178 Kim Parker</option>
+<option value="179|Jenny May">179 Jenny May</option>
+<option value="180|Catherine Rifkin">180 Catherine Rifkin</option>
+<option value="181|O Dircks">181 O Dircks</option>
+<option value="182|Melissa L Manske">182 Melissa L Manske</option>
+<option value="183|Cynthia K White">183 Cynthia K White</option>
+<option value="184|N Binns">184 N Binns</option>
+<option value="185|X Dekle">185 X Dekle</option>
+<option value="186|Erica Jung">186 Erica Jung</option>
+<option value="187|Sophie Schoon">187 Sophie Schoon</option>
+<option value="188|Maria Daniels">188 Maria Daniels</option>
+<option value="189|Adonia Daniel">189 Adonia Daniel</option>
+<option value="190|Kari Schleicher">190 Kari Schleicher</option>
+<option value="191|M Ites">191 M Ites</option>
+<option value="192|Elizabeth A Svec">192 Elizabeth A Svec</option>
+<option value="193|Courtney Best">193 Courtney Best</option>
+<option value="194|Alison L Gallito">194 Alison L Gallito</option>
+<option value="195|Jennifer A Prahm">195 Jennifer A Prahm</option>
+<option value="196|Megan Oman">196 Megan Oman</option>
+<option value="197|Candice M Grady">197 Candice M Grady</option>
+<option value="198|Gretchen Wertz">198 Gretchen Wertz</option>
+<option value="199|Megan L DeWeese">199 Megan L DeWeese</option>
+<option value="200|E Strotman">200 E Strotman</option>
+
+				</select>
+			</td>
+			<td>
+				<table>
+					<tr>
+						<td>
+							<input type="button" class="movebutton" value=">>" onclick="om.moveRight(true);"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="button" class="movebutton" value=">" onclick="om.moveRight(false);"/>
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="button" class="movebutton" value="<" onclick="om.moveLeft(false);"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="button" class="movebutton" value="<<" onclick="om.moveLeft(true);"/>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<select id="right" multiple="multiple" size="20" style="width: 300px;" ondblclick="om.moveLeft();" onkeypress="kp_moveLeft(event, this);">
+				</select>
+			</td>
+			<td>
+				<table>
+					<tr>
+						<td>
+							<input type="button" class="movebutton" value="Move Up" onclick="try{om.moveUp('R'); renumberOptions();}catch(e){alert(e.toString());}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="button" class="movebutton" value="Move Down" onclick="try{om.moveDown('R'); renumberOptions();}catch(e){alert(e.toString());}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td>
+							&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" id="moveToPos" size="3"/>
+							<input type="button" class="movebutton" value="moveToPosition()" onclick="try{om.moveToPosition('R', document.getElementById('moveToPos').value); renumberOptions();}catch(e){alert(e.toString());}"/>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table cellspacing="0" cellpadding="0" style="width: 100%;">
+					<tr>
+						<td style="width: 50%;">
+							<input type="button" style="width: 100%" value="Select All" onclick="om.selectAll('L');"/>
+						</td>
+						<td style="width: 50%;">
+							<input type="button" style="width: 100%" value="Select None" onclick="om.selectNone('L');"/>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				&nbsp;
+			</td>
+			<td>
+				<table cellspacing="0" cellpadding="0" style="width: 100%">
+					<tr>
+						<td style="width: 50%;">
+							<input type="button" style="width: 100%" value="Select All" onclick="om.selectAll('R');"/>
+						</td>
+						<td style="width: 50%;">
+							<input type="button" style="width: 100%" value="Select None" onclick="om.selectNone('R');"/>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</center>
+
+<br/>
+<br/>
+<h2 style="color: yellow;">Finished features:</h2>
+<ol>
+	<li>Move all options from left to right and vice versa.</li>
+	<li>Move selected options from left to right and vice versa.</li>
+	<li>Move selected options up/down any specified number of spaces.  Options will move 1 space by default.</li>
+		<ul>
+			<li class="bug">Bug found: Mozilla/Firefox/Netscape => Scroll position for the &lt;SELECT&gt; element returns to the top of the list on every call to the move up/down functions.</li> 
+		</ul>
+	<li>Move selected options to any specified position in current list.
+		<ul>
+			<li class="bug"><span style="text-decoration: line-through;">Bug found: Mozilla/Firefox/Netscape => If a script requires more than 5 seconds to run, a message pops up asking the user if the script should be allowed to continue.  This message cannot be suppressed.  Depending on the number of spaces required to move an option to a specific index, this feature's method call can take longer than is allowed before this message pops up. I am working on a faster algorithm to account for this time limit.</span> <span style="color: maroon;">-- FIXED --</span></li>
+		</ul>
+	</li>
+	<li>Move selected options from left to right and vice versa using "RETURN" key.</li>
+	<li>Select all options in specified list with one command.</li>
+	<li>Deselect all options in specified list with one command.</li>
+	<li>Sort specified list alphabetically with value attribute of &lt;OPTION&gt; set as: ID|Name.</li>
+	<li>Sort specified list numerically with value attribute of &lt;OPTION&gt; set as: ID|Name.</li>
+	<li>Retrieve value attributes of &lt;OPTION&gt;'s in the order that they appear in listbox.  Useful for submitting full list to database.</li>
+	<li>Moving to a specific &lt;OPTION&gt; by keypress is already built in to the &lt;SELECT&gt; element but only to a minimal extent.  I will continue to work on extending that functionality for our purposes.</li>
+</ol>
+
+</body>
+</html>
